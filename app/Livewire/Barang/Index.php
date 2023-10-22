@@ -26,11 +26,12 @@ class Index extends Component
 
     public function render()
     {
-        $total_pendapatan = Penjualan::all();
         $barang = Barang::all();
 
-        $total = $total_pendapatan->sum('total_beli') * $total_pendapatan->sum('total_biaya');
-        $laba_rugi = ($barang->sum('harga_jual') * $barang->sum('jumlah_penjualan')) - ($barang->sum('harga_beli') * $barang->sum('jumlah_pembelian'));
+        $laba_kotor = $barang->sum('jumlah_penjualan') * $barang->sum('harga_jual');
+
+        $laba_rugi = $laba_kotor - ($barang->sum('jumlah_pembelian') * $barang->sum('harga_beli')); 
+
         if($laba_rugi > 0) {
             $pesan = 'Untung';
         } else if ($laba_rugi == 0) {
@@ -40,8 +41,8 @@ class Index extends Component
         }
         return view('livewire.barang.index', [
             'barang' => Barang::latest()->paginate(5),
-            'total_pendapatan' => $total,
-            'laba_rugi' => $laba_rugi,
+            'laba_kotor' => $laba_kotor,
+            'laba_rugi'=> $laba_rugi,
             'pesan' => $pesan
         ]);
     }
