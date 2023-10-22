@@ -14,7 +14,7 @@ class Penjualan extends Model
         'barang_id',
         'nama_customer',
         'total_beli',
-        'total_biaya'
+        'laba_kotor'
     ];
 
     public function barangs() {

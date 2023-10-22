@@ -15,7 +15,7 @@ class Create extends Component
     public $nama_barang;
     public $harga_jual;
     public $stok;
-    public $total_biaya;
+    public $laba_kotor;
 
     #[Rule('required', message: 'Masukkan nama Customer!')]
     public $customer;
@@ -46,7 +46,7 @@ class Create extends Component
             return redirect()->route('index');
         } else {
 
-            $this->total_biaya = $this->harga_jual * $this->total_beli;
+            $this->laba_kotor = $this->harga_jual * $this->total_beli;
 
             DB::transaction(function () {
 
@@ -59,7 +59,7 @@ class Create extends Component
                     'barang_id' => $this->idBarang,
                     'nama_customer' => $this->customer,
                     'total_beli' => $this->total_beli,
-                    'total_biaya' => $this->total_biaya,
+                    'laba_kotor' => $this->laba_kotor,
                 ]);
             }, 5);
     

@@ -13,7 +13,7 @@ class Edit extends Component
     public $idBarang;
     public $idPenjualan;
     public $nama_barang;
-    public $total_biaya;
+    public $laba_kotor;
     public $harga_jual;
 
     #[Rule('required', message: 'Masukkan nama Customer!')]
