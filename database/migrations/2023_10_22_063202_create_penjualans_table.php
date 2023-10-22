@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('barang_id');
             $table->string('nama_customer');
             $table->integer('total_beli');
-            $table->integer('total_biaya');
+            $table->integer('laba_kotor');
 
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->timestamps();
